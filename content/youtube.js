@@ -26,7 +26,11 @@ async function handleSummarizeClick(button) {
     if (!text) return false;
     const title = document.title;
     const prompt = `Summarize the below video with title: ${title}:\n\n${text}`;
-    chrome.runtime.sendMessage({ type: "OPEN_CHATGPT", prompt });
+    if (chrome.runtime?.id) {
+      chrome.runtime.sendMessage({ type: "OPEN_CHATGPT", prompt });
+    } else {
+      console.warn("YouTube Transcript Summarizer: Extension context invalidated, cannot send message.");
+    }
     return true;
   };
 

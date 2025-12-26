@@ -5,14 +5,32 @@ const SELECTORS = {
 
 function getStoredPrompt() {
   return new Promise((resolve) => {
-    chrome.storage.session.get(["latestPrompt"], (result) => {
-      resolve(result.latestPrompt || "");
-    });
+    if (!chrome.runtime?.id) {
+      resolve("");
+      return;
+    }
+    try {
+      chrome.storage.session.get(["latestPrompt"], (result) => {
+        if (chrome.runtime.lastError) {
+          resolve("");
+          return;
+        }
+        resolve(result.latestPrompt || "");
+      });
+    } catch (e) {
+      resolve("");
+    }
   });
 }
 
 function clearStoredPrompt() {
-  chrome.storage.session.remove(["latestPrompt"]);
+  if (chrome.runtime?.id) {
+    try {
+      chrome.storage.session.remove(["latestPrompt"]);
+    } catch (e) {
+      // Ignored
+    }
+  }
 }
 
 function waitForElement(selector, timeoutMs = 20000) {
