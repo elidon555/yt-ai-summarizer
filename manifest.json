@@ -15,6 +15,9 @@
     "https://chat.openai.com/*",
     "https://chatgpt.com/*"
   ],
+  "action": {
+    "default_popup": "popup/popup.html"
+  },
   "background": {
     "service_worker": "background.js"
   },

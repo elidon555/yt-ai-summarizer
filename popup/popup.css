@@ -1,0 +1,110 @@
+body {
+  width: 350px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  margin: 0;
+  padding: 16px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+h2 {
+  margin: 0;
+  font-size: 18px;
+  color: #1a1a1a;
+}
+
+.description {
+  font-size: 12px;
+  color: #666;
+  margin: 0;
+}
+
+label {
+  font-weight: 500;
+  font-size: 13px;
+  margin-bottom: 4px;
+  display: block;
+}
+
+textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-family: monospace;
+  font-size: 12px;
+  resize: vertical;
+  min-height: 150px;
+  box-sizing: border-box;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+}
+
+.legend {
+  font-size: 11px;
+  background: #eee;
+  padding: 8px;
+  border-radius: 4px;
+  color: #555;
+}
+
+.legend strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.legend ul {
+  margin: 0;
+  padding-left: 16px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+button.primary {
+  background-color: #007bff;
+  color: white;
+}
+
+button.secondary {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.status {
+  text-align: right;
+  font-size: 12px;
+  height: 16px;
+  margin-top: 4px;
+}
+
+.status.success {
+  color: #28a745;
+}

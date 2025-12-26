@@ -24,13 +24,28 @@ async function copyTranscript() {
 async function handleSummarizeClick(button) {
   const processTranscript = async (text) => {
     if (!text) return false;
-    const title = document.title;
-    const prompt = `Summarize the below video with title: ${title}:\n\n${text}`;
-    if (chrome.runtime?.id) {
-      chrome.runtime.sendMessage({ type: "OPEN_CHATGPT", prompt });
-    } else {
-      console.warn("YouTube Transcript Summarizer: Extension context invalidated, cannot send message.");
-    }
+
+    // Get stored prompt template or use default
+    chrome.storage.sync.get(['promptTemplate'], (result) => {
+      let prompt = result.promptTemplate || `Summarize the following content in 5-10 bullet points with timestamp if it's transcript.
+Title: "{{Title}}"
+
+URL: "{{URL}}"
+
+Transcript: "{{Transcript}}"`;
+
+      // Replace placeholders
+      prompt = prompt.replace(/{{Title}}/g, document.title)
+        .replace(/{{URL}}/g, window.location.href)
+        .replace(/{{Transcript}}/g, text);
+
+      if (chrome.runtime?.id) {
+        chrome.runtime.sendMessage({ type: "OPEN_CHATGPT", prompt });
+      } else {
+        console.warn("YouTube Transcript Summarizer: Extension context invalidated, cannot send message.");
+      }
+    });
+
     return true;
   };
 
