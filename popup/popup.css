@@ -50,6 +50,35 @@ textarea:focus {
   box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
 }
 
+.settings-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.setting-group {
+  flex: 1;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-bottom: 6px;
+  /* Align with input */
+}
+
+select {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+
 .legend {
   font-size: 11px;
   background: #eee;

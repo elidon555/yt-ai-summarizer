@@ -4,14 +4,22 @@ try {
   console.warn("YouTube Summarizer: Failed to set access level. Content scripts may not be able to read session storage.", error);
 }
 
-const CHATGPT_URL = "https://chatgpt.com/?model=gpt-5-2-thinking&temporary-chat=true";
+
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message?.type === "OPEN_CHATGPT" && message.prompt) {
     console.log("YouTube Summarizer BG: Received OPEN_CHATGPT", { promptLength: message.prompt.length });
     chrome.storage.session.set({ latestPrompt: message.prompt }, () => {
       console.log("YouTube Summarizer BG: Prompt saved to session storage. Opening tab...");
-      chrome.tabs.create({ url: CHATGPT_URL });
+
+      chrome.storage.sync.get(['selectedModel', 'tempChat'], (result) => {
+        const model = result.selectedModel || 'gpt-5-2-thinking';
+        const tempChat = result.tempChat !== undefined ? result.tempChat : false;
+
+        const url = `https://chatgpt.com/?ref=glasp&model=${model}&temporary-chat=${tempChat}`;
+        chrome.tabs.create({ url: url });
+      });
+
       sendResponse({ ok: true });
     });
     return true;

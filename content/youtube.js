@@ -27,7 +27,7 @@ async function handleSummarizeClick(button) {
 
     // Get stored prompt template or use default
     chrome.storage.sync.get(['promptTemplate'], (result) => {
-      let prompt = result.promptTemplate || `Summarize the following content in 5-10 bullet points with timestamp if it's transcript.
+      let prompt = result.promptTemplate || `Summarize the following content as you see fit.
 Title: "{{Title}}"
 
 URL: "{{URL}}"

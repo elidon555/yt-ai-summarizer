@@ -1,20 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>YT Summarizer Settings</title>
   <link rel="stylesheet" href="popup.css">
 </head>
+
 <body>
   <div class="container">
     <h2>Prompt Settings</h2>
     <p class="description">
       Customize the prompt sent to AI.
     </p>
-    
+
     <label for="promptTemplate">Prompt Template:</label>
     <textarea id="promptTemplate" rows="10"></textarea>
+
+    <div class="settings-row">
+      <div class="setting-group">
+        <label for="modelSelect">Model:</label>
+        <select id="modelSelect">
+          <option value="gpt-5-2-thinking">GPT-5.2 Thinking</option>
+          <option value="gpt-5-2">GPT-5.2</option>
+        </select>
+      </div>
+
+      <div class="setting-group checkbox-group">
+        <input type="checkbox" id="tempChat">
+        <label for="tempChat" style="display:inline; font-weight:normal;">Temporary Chat</label>
+      </div>
+    </div>
 
     <div class="legend">
       <strong>Placeholders:</strong>
@@ -33,4 +50,5 @@
   </div>
   <script src="popup.js"></script>
 </body>
+
 </html>
