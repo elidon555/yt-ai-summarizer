@@ -6,11 +6,17 @@ async function copyTranscript() {
   const segments = document.querySelectorAll('ytd-transcript-segment-renderer');
   if (segments.length === 0) return null;
 
+  const seen = new Set();
   const transcriptText = Array.from(segments).map(segment => {
     const timestamp = segment.querySelector('.segment-timestamp')?.innerText.trim() || "";
     const text = segment.querySelector('.segment-text')?.innerText.trim() || "";
-    return `${timestamp} ${text}`;
-  }).join('\n');
+    const row = `${timestamp} ${text}`;
+    if (seen.has(row)) return null;
+    seen.add(row);
+    return row;
+  }).filter(row => row !== null).join('\n');
+
+  if (!transcriptText) return null;
 
   try {
     await navigator.clipboard.writeText(transcriptText);
@@ -28,6 +34,7 @@ async function handleSummarizeClick(button) {
     // Get stored prompt template or use default
     chrome.storage.sync.get(['promptTemplate'], (result) => {
       let prompt = result.promptTemplate || `Summarize the following content as you see fit.
+      
 Title: "{{Title}}"
 
 URL: "{{URL}}"
