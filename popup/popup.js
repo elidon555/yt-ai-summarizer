@@ -1,4 +1,5 @@
-const DEFAULT_PROMPT = `Make a summary of this video as you see fit
+const DEFAULT_PROMPT = `Make a summary of this video as you see fit. Use great formatting!
+
 Title: "{{Title}}"
 
 URL: "{{URL}}"
