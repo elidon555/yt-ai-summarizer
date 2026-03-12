@@ -19,8 +19,7 @@
     "default_popup": "popup/popup.html"
   },
   "background": {
-    "service_worker": "assets/js/defaults.js",
-    "type": "module"
+    "service_worker": "background.js"
   },
   "content_scripts": [
     {

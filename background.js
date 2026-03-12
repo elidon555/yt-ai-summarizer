@@ -1,4 +1,11 @@
-import { DEFAULTS } from "./assets/js/defaults.js";
+// Since we cannot use ES modules for files injected as content scripts
+// without a bundler, we will fetch the defaults dynamically or use hardcoded values
+// until Chrome supports modules in content scripts natively without throwing SyntaxErrors.
+
+const DEFAULTS = {
+  model: "gpt-5-4-thinking",
+  tempChat: false,
+};
 
 try {
   chrome.storage.session.setAccessLevel({ accessLevel: 'TRUSTED_AND_UNTRUSTED_CONTEXTS' });

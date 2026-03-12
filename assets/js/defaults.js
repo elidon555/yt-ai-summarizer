@@ -13,4 +13,3 @@ Transcript: "{{Transcript}}"`,
 if (typeof window !== "undefined") {
   window.DEFAULTS = DEFAULTS;
 }
-export { DEFAULTS };
