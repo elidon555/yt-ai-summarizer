@@ -7,7 +7,7 @@ class ChatGPTController {
       },
       timeouts: {
         elementWait: 20000,
-        pollingInterval: 500,
+        pollingInterval: 100,
         proseMirrorSettle: 1500,
         stateSettle: 1000
       }
