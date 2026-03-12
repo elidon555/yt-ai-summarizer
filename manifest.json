@@ -27,7 +27,11 @@
         "https://www.youtube.com/*",
         "https://m.youtube.com/*"
       ],
+      "css": [
+        "assets/css/youtube.css"
+      ],
       "js": [
+        "assets/js/icons.js",
         "content/youtube.js"
       ],
       "run_at": "document_idle"
