@@ -137,3 +137,8 @@ button.secondary {
 .status.success {
   color: #28a745;
 }
+/* Added by YT Summarizer refactor */
+.temp-chat-label {
+  display: inline;
+  font-weight: normal;
+}

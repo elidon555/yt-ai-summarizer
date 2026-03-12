@@ -19,7 +19,8 @@
     "default_popup": "popup/popup.html"
   },
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "assets/js/defaults.js",
+    "type": "module"
   },
   "content_scripts": [
     {
@@ -31,6 +32,7 @@
         "assets/css/youtube.css"
       ],
       "js": [
+        "assets/js/defaults.js",
         "assets/js/icons.js",
         "content/youtube.js"
       ],
@@ -42,6 +44,7 @@
         "https://chatgpt.com/*"
       ],
       "js": [
+        "assets/js/defaults.js",
         "content/chatgpt.js"
       ],
       "run_at": "document_idle"

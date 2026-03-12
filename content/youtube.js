@@ -1,10 +1,4 @@
-const DEFAULT_PROMPT = `Summarize the following content as you see fit.
 
-Title: "{{Title}}"
-
-URL: "{{URL}}"
-
-Transcript: "{{Transcript}}"`;
 
 class YouTubeSummarizer {
   constructor() {
@@ -119,7 +113,7 @@ class YouTubeSummarizer {
 
   sendPrompt(text) {
     chrome.storage.sync.get(["promptTemplate"], (result) => {
-      let prompt = result.promptTemplate || DEFAULT_PROMPT;
+      let prompt = result.promptTemplate || DEFAULTS.prompt;
 
       prompt = prompt
         .replace(/{{Title}}/g, document.title)
