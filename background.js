@@ -13,7 +13,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       console.log("YouTube Summarizer BG: Prompt saved to session storage. Opening tab...");
 
       chrome.storage.sync.get(['selectedModel', 'tempChat'], (result) => {
-        const model = result.selectedModel || 'gpt-5-2-thinking';
+        const model = result.selectedModel || 'gpt-5-4-thinking';
         const tempChat = result.tempChat !== undefined ? result.tempChat : false;
 
         const url = `https://chatgpt.com/?ref=glasp&model=${model}&temporary-chat=${tempChat}`;

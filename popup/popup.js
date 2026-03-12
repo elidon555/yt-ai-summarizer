@@ -6,7 +6,7 @@ URL: "{{URL}}"
 
 Transcript: "{{Transcript}}"`;
 
-const DEFAULT_MODEL = 'gpt-5-2-thinking';
+const DEFAULT_MODEL = 'gpt-5-4-thinking';
 const DEFAULT_TEMP_CHAT = false;
 
 const statusEl = document.getElementById('status');
