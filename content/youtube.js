@@ -11,13 +11,13 @@ function removeButton() {
 
 
 async function copyTranscript() {
-  const segments = document.querySelectorAll('ytd-transcript-segment-renderer');
+  const segments = document.querySelectorAll('ytd-transcript-segment-renderer, transcript-segment-view-model');
   if (segments.length === 0) return null;
 
   const seen = new Set();
   const transcriptText = Array.from(segments).map(segment => {
-    const timestamp = segment.querySelector('.segment-timestamp')?.innerText.trim() || "";
-    const text = segment.querySelector('.segment-text')?.innerText.trim() || "";
+    const timestamp = segment.querySelector('.segment-timestamp, .ytwTranscriptSegmentViewModelTimestamp')?.innerText.trim() || "";
+    const text = segment.querySelector('.segment-text, .yt-core-attributed-string')?.innerText.trim() || "";
     const row = `${timestamp} ${text}`;
     if (seen.has(row)) return null;
     seen.add(row);
