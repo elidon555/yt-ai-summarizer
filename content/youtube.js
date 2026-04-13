@@ -10,7 +10,7 @@ class YouTubeSummarizer {
         transcriptButton: 'button[aria-label="Show transcript"]',
         segments: "ytd-transcript-segment-renderer, transcript-segment-view-model",
         timestamp: ".segment-timestamp, .ytwTranscriptSegmentViewModelTimestamp",
-        text: ".segment-text, .yt-core-attributed-string",
+        text: ".segment-text, .yt-core-attributed-string, .ytAttributedStringHost",
       },
       polling: {
         maxAttempts: 20,
