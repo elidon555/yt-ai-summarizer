@@ -3,8 +3,7 @@
 // until Chrome supports modules in content scripts natively without throwing SyntaxErrors.
 
 const DEFAULTS = {
-  model: "gpt-5-4-thinking",
-  tempChat: false,
+  incognito: false,
 };
 
 try {
@@ -14,17 +13,16 @@ try {
 }
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message?.type === "OPEN_CHATGPT" && message.prompt) {
-    console.log("YouTube Summarizer BG: Received OPEN_CHATGPT", { promptLength: message.prompt.length });
+  if (message?.type === "OPEN_CLAUDE" && message.prompt) {
+    console.log("YouTube Summarizer BG: Received OPEN_CLAUDE", { promptLength: message.prompt.length });
 
     chrome.storage.session.set({ latestPrompt: message.prompt }, () => {
       console.log("YouTube Summarizer BG: Prompt saved to session storage. Opening tab...");
 
-      chrome.storage.sync.get(['selectedModel', 'tempChat'], (result) => {
-        const model = result.selectedModel || DEFAULTS.model;
-        const tempChat = result.tempChat !== undefined ? result.tempChat : DEFAULTS.tempChat;
+      chrome.storage.sync.get(['incognito'], (result) => {
+        const incognito = result.incognito !== undefined ? result.incognito : DEFAULTS.incognito;
 
-        const url = `https://chatgpt.com/?ref=glasp&model=${model}&temporary-chat=${tempChat}`;
+        const url = incognito ? "https://claude.ai/new?incognito" : "https://claude.ai/new";
         chrome.tabs.create({ url });
       });
 

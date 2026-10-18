@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "YouTube Transcript Summarizer",
-  "version": "0.1.0",
-  "description": "Adds a YouTube player button that sends the transcript to ChatGPT for summarization.",
+  "name": "YouTube Transcript to Claude",
+  "version": "0.2.0",
+  "description": "Adds a YouTube player button that copies the transcript and sends it to Claude.",
   "permissions": [
     "tabs",
     "storage",
@@ -12,8 +12,7 @@
   "host_permissions": [
     "https://www.youtube.com/*",
     "https://m.youtube.com/*",
-    "https://chat.openai.com/*",
-    "https://chatgpt.com/*"
+    "https://claude.ai/*"
   ],
   "action": {
     "default_popup": "popup/popup.html"
@@ -39,14 +38,13 @@
     },
     {
       "matches": [
-        "https://chat.openai.com/*",
-        "https://chatgpt.com/*"
+        "https://claude.ai/*"
       ],
       "js": [
         "assets/js/defaults.js",
-        "content/chatgpt.js"
+        "content/claude.js"
       ],
-      "run_at": "document_idle"
+      "run_at": "document_start"
     }
   ]
 }

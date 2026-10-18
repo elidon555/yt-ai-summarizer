@@ -1,6 +1,5 @@
 const DEFAULTS = {
-  model: "gpt-5-4-thinking",
-  tempChat: false,
+  incognito: false,
   prompt: `Make a summary of this video as you see fit. Use great formatting!
 
 Title: "{{Title}}"

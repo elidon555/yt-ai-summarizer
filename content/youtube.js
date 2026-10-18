@@ -4,7 +4,7 @@ class YouTubeSummarizer {
   constructor() {
     this.config = {
       buttonId: "yt-summarize-transcript",
-      buttonTitle: "Summarize with ChatGPT",
+      buttonTitle: "Summarize with Claude",
       selectors: {
         controls: ".ytp-right-controls",
         transcriptButton: 'button[aria-label="Show transcript"]',
@@ -13,8 +13,8 @@ class YouTubeSummarizer {
         text: ".segment-text, .yt-core-attributed-string, .ytAttributedStringHost",
       },
       polling: {
-        maxAttempts: 20,
-        intervalMs: 250,
+        maxAttempts: 50,
+        intervalMs: 100,
       },
     };
 
@@ -121,7 +121,7 @@ class YouTubeSummarizer {
         .replace(/{{Transcript}}/g, text);
 
       if (chrome.runtime?.id) {
-        chrome.runtime.sendMessage({ type: "OPEN_CHATGPT", prompt });
+        chrome.runtime.sendMessage({ type: "OPEN_CLAUDE", prompt });
       } else {
         console.warn("YouTube Transcript Summarizer: Extension context invalidated, cannot send message.");
       }

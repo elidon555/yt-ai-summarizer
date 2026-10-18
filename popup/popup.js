@@ -2,8 +2,7 @@ class PopupController {
   constructor() {
     this.elements = {
       promptTemplate: document.getElementById("promptTemplate"),
-      modelSelect: document.getElementById("modelSelect"),
-      tempChat: document.getElementById("tempChat"),
+      incognito: document.getElementById("incognito"),
       saveBtn: document.getElementById("saveBtn"),
       resetBtn: document.getElementById("resetBtn"),
       status: document.getElementById("status"),
@@ -23,10 +22,9 @@ class PopupController {
   // ── Settings ─────────────────────────────────────────────
 
   loadSettings() {
-    chrome.storage.sync.get(["promptTemplate", "selectedModel", "tempChat"], (result) => {
+    chrome.storage.sync.get(["promptTemplate", "incognito"], (result) => {
       this.elements.promptTemplate.value = result.promptTemplate || DEFAULTS.prompt;
-      this.elements.modelSelect.value = result.selectedModel || DEFAULTS.model;
-      this.elements.tempChat.checked = result.tempChat !== undefined ? result.tempChat : DEFAULTS.tempChat;
+      this.elements.incognito.checked = result.incognito !== undefined ? result.incognito : DEFAULTS.incognito;
     });
   }
 
@@ -34,8 +32,7 @@ class PopupController {
     chrome.storage.sync.set(
       {
         promptTemplate: this.elements.promptTemplate.value,
-        selectedModel: this.elements.modelSelect.value,
-        tempChat: this.elements.tempChat.checked,
+        incognito: this.elements.incognito.checked,
       },
       () => this.showStatus("Settings saved!", "success")
     );
@@ -45,14 +42,12 @@ class PopupController {
     if (!confirm("Are you sure you want to reset all settings to default?")) return;
 
     this.elements.promptTemplate.value = DEFAULTS.prompt;
-    this.elements.modelSelect.value = DEFAULTS.model;
-    this.elements.tempChat.checked = DEFAULTS.tempChat;
+    this.elements.incognito.checked = DEFAULTS.incognito;
 
     chrome.storage.sync.set(
       {
         promptTemplate: DEFAULTS.prompt,
-        selectedModel: DEFAULTS.model,
-        tempChat: DEFAULTS.tempChat,
+        incognito: DEFAULTS.incognito,
       },
       () => this.showStatus("Reset to default!", "success")
     );
